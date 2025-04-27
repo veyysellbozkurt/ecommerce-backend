@@ -8,7 +8,11 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://babaamet-front.lm.r.appspot.com', // Burada frontend URL'yi belirtiyoruz
+    methods: ['GET', 'POST', 'DELETE', 'PUT'], // Hangi metodlara izin verileceğini belirtiyoruz
+    allowedHeaders: ['Content-Type'], // Hangi header'lara izin verileceğini belirtiyoruz
+  }));
 app.use(express.json());
 
 // Ürün API routes'ını kullan
@@ -18,7 +22,7 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB connection was successful!');
-    app.listen(4000, '0.0.0.0', () => {
+    app.listen(8080, '0.0.0.0', () => {
       console.log('Server running on port 4000 and 0.0.0.0.');
     });
   })

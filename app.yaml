@@ -1,0 +1,13 @@
+runtime: nodejs20
+
+env_variables:
+  MONGO_URI: "mongodb+srv://babamongo:babamongo@cluster0.tlssidq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  PORT: "8080"  # PORT değişkenini ekledik
+
+instance_class: F4
+
+readiness_check:
+  path: "/"  # Sağlık kontrolünün yapılacağı endpoint
+  check_interval_sec: 5  # Kontrol aralığı
+  timeout_sec: 4  # Kontrolün süresi
+  failure_threshold: 3  # Başarısız deneme sayısı
